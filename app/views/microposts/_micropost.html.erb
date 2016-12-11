@@ -1,6 +1,18 @@
 <li>
   <span class="content"><%= micropost.content %></span>
+  <div class="image">
+  <% if micropost.image? %>
+  <div class="image">
+   <%= image_tag micropost.image.url(:thumb) %>
+   </div>
+   <% end %>
+   
   <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
   </span>
+<% if current_user %>
+ <%= link_to "delete", micropost, method: :delete,
+                                  data: { confirm: "Yout sure?" },
+                                  title: micropost.content %>
+ <% end %>
 </li>

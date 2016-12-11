@@ -3,6 +3,7 @@ class MicropostsController < ApplicationController
 
 def create
     @micropost = current_user.microposts.build(micropost_params)
+    @micropost.genre = params[:micropost][:genre]
     if @micropost.save
       flash[:success] = "Micropost created!"
       redirect_to root_url
@@ -11,6 +12,10 @@ def create
       render 'static_pages/home'
     end
   end
+
+def index
+  @microposts = Microposot.all
+end
 
 
   def destroy
@@ -21,6 +26,6 @@ def create
 private
 
     def micropost_params
-      params.require(:micropost).permit(:content)
+      params.require(:micropost).permit(:content, :image)
     end
 end

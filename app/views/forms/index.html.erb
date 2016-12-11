@@ -1,0 +1,16 @@
+<h1>投稿の一覧</h1>
+<il class="micropost">
+<% @microposts.each do |micropost|%>
+<li>
+<p>投稿内容</p>
+<span class="content">
+投稿した人のid
+<%= micropost.user_id %>
+ジャンル
+<%= micropost.genre %>
+投稿内容
+<%= micropost.content %>
+</span>
+</li>
+<% end %>
+</ul>

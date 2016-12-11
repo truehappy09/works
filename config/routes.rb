@@ -1,9 +1,24 @@
 SampleApp::Application.routes.draw do
+  resources :pictures
+
   devise_for  :users, :controllers => {
     :registrations => "registrations"
   }
-  resources :users, only: [:show, :index,:destroy]
+  resources :microposts,    only:[:create,   :destroy]
+  resources :relationships, only: [:create, :destroy]
+  resources :users, only: [:show, :index] do
+
+    member do
+      get :following, :followers
+    end
+  end
+  
   resources :microposts, only: [:create, :destroy]
+  resources :categories, only: [:create, :new,:destroy] do
+    # collection do
+    #   get :form
+    # end
+  end
   root  'static_pages#home'
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
@@ -13,6 +28,15 @@ SampleApp::Application.routes.draw do
   get "static_pages/help"
   get "static_pages/about"
   get "static_pages/contact"
+  get 'inquiry' => 'inquiry#index'
+  get 'inquiry/confirm' => 'inquiry#confirm'
+  post 'inquiry/confirm' => 'inquiry#confirm'
+  post 'inquiry/thanks' =>'inquiry#thanks'
+  get 'forms/index' => 'forms#index'
+  get 'forms/find' => 'forms#find'
+  # get 'categories/form' =>'categories#form'
+  # post 'categories/create' =>'categories#create'
+  # get 'categories/create' =>'categories#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
