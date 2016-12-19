@@ -34,6 +34,7 @@ SampleApp::Application.routes.draw do
   post 'inquiry/thanks' =>'inquiry#thanks'
   get 'forms/index' => 'forms#index'
   get 'forms/find' => 'forms#find'
+  get 'forms/select' => 'forms#select'
   # get 'categories/form' =>'categories#form'
   # post 'categories/create' =>'categories#create'
   # get 'categories/create' =>'categories#create'

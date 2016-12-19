@@ -1,11 +1,8 @@
 <h1>投稿の一覧</h1>
 <class="micropost">
 <% @microposts.each do |micropost|%>
-<p>投稿内容</p>
-<span class="content">
-投稿した人のid
 <%= micropost.content %>
-ジャンル
-<%=micropost.genre %>
-</span>
+<%= micropost.genre %>
+<%= micropost.user_id%>
+<p>投稿内容</p>
 <% end %>

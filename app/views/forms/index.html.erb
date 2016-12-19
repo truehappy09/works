@@ -1,16 +1,17 @@
+<%= form_tag("/forms/select",method: "get")do %>
+<%= collection_select :genre,:select_genre,Micropost.all,:genre,:genre %>
+<%= submit_tag "一覧表示" %>
+<% end %>
 <h1>投稿の一覧</h1>
-<il class="micropost">
+<class="micropost">
 <% @microposts.each do |micropost|%>
-<li>
 <p>投稿内容</p>
 <span class="content">
 投稿した人のid
-<%= micropost.user_id %>
-ジャンル
-<%= micropost.genre %>
-投稿内容
 <%= micropost.content %>
+ジャンル
+<%=micropost.genre %>
 </span>
-</li>
 <% end %>
-</ul>
+
+
